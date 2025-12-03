@@ -6,7 +6,7 @@
 [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen.svg)](https://genai-security-maturity-explorer.onrender.com)
 [![Compatibility Checks](https://github.com/RubyJane88/genai-security-maturity-explorer/actions/workflows/compatibility-check.yml/badge.svg)](https://github.com/RubyJane88/genai-security-maturity-explorer/actions/workflows/compatibility-check.yml)
 
-An interactive dashboard for visualizing the **Three-Dimensional Maturity Assessment** of Generative AI security risks, based on the master's thesis _"Security Risks in Generative AI"_ by Ruby Jane Cabagnot (2025).
+An interactive dashboard for visualizing the **Three-Dimensional Maturity Assessment** of Generative AI security risks, based on the master's research paper _"Security Risks in Generative AI"_ by Ruby Jane Cabagnot (2025).
 
 **🌐 Live Demo**: [https://genai-security-maturity-explorer.onrender.com](https://genai-security-maturity-explorer.onrender.com)
 
@@ -312,9 +312,9 @@ If you use this dashboard or the underlying research, please cite:
 @mastersthesis{cabagnot2025security,
   author  = {Cabagnot, Ruby Jane},
   title   = {Security Risks in Generative AI: A Sociotechnical Maturity Assessment},
-  school  = {[University Name]},
+  school  = {[OsloMet University, Oslo, Norway]]},
   year    = {2025},
-  type    = {Master's Thesis}
+  type    = {Master's Research Paper on Cybersecurity & Privacy}
 }
 ```
 

@@ -3,7 +3,9 @@
 ## Why Compatibility Issues Happen
 
 ### 1. **Python's Dynamic Nature**
+
 Unlike compiled languages (Java, C++), Python doesn't check compatibility until runtime:
+
 ```python
 # This looks fine...
 import pandas as pd
@@ -13,6 +15,7 @@ df = pd.DataFrame(data)  # ❌ ImportError at runtime!
 ```
 
 ### 2. **The Dependency Chain**
+
 ```
 Your app (Python 3.13)
   └─ pandas 2.1.4
@@ -23,18 +26,19 @@ Your app (Python 3.13)
 
 ### 3. **Platform Differences**
 
-| Factor | Your Mac | Render.com | Impact |
-|--------|----------|------------|--------|
-| **OS** | macOS | Linux | Different system libraries |
-| **Architecture** | ARM64 (M1/M2) | x86_64 | Different compiled binaries |
-| **Python** | 3.12.9 | 3.11.0 | Different ABIs |
-| **Compiler** | clang | gcc | Different C compilation |
+| Factor           | Your Mac      | Render.com | Impact                      |
+| ---------------- | ------------- | ---------- | --------------------------- |
+| **OS**           | macOS         | Linux      | Different system libraries  |
+| **Architecture** | ARM64 (M1/M2) | x86_64     | Different compiled binaries |
+| **Python**       | 3.12.9        | 3.11.0     | Different ABIs              |
+| **Compiler**     | clang         | gcc        | Different C compilation     |
 
 ---
 
 ## 🛡️ How to Prevent Issues
 
 ### Strategy 1: Version Pinning
+
 **Always pin exact versions in `requirements.txt`:**
 
 ```txt
@@ -52,12 +56,14 @@ numpy~=1.26
 **Why?** Prevents surprise updates that break compatibility.
 
 ### Strategy 2: Use `.python-version`
+
 ```bash
 # Tell all tools exactly which Python to use
 echo "3.11.0" > .python-version
 ```
 
 **Respected by:**
+
 - Render.com
 - pyenv
 - asdf
@@ -66,10 +72,13 @@ echo "3.11.0" > .python-version
 ### Strategy 3: Test Before Deploying
 
 #### Option A: Quick Shell Script
+
 ```bash
 ./check_compatibility.sh
 ```
+
 Checks:
+
 - Python version
 - Virtual environment
 - Package resolution
@@ -77,10 +86,13 @@ Checks:
 - Syntax errors
 
 #### Option B: Detailed Python Script
+
 ```bash
 python check_compatibility.py
 ```
+
 Checks:
+
 - Python version matching
 - Requirements validation
 - Package compatibility
@@ -89,6 +101,7 @@ Checks:
 - Dependency conflicts
 
 ### Strategy 4: Use Docker for Exact Matching
+
 ```dockerfile
 # Dockerfile
 FROM python:3.11-slim
@@ -102,10 +115,12 @@ CMD ["gunicorn", "app:server", "--bind", "0.0.0.0:8050"]
 ```
 
 **Test locally:**
+
 ```bash
 docker build -t genai-maturity .
 docker run -p 8050:8050 genai-maturity
 ```
+
 Now your local environment **exactly matches** production!
 
 ---
@@ -139,7 +154,9 @@ git push origin main
 ## 🔧 Troubleshooting Common Issues
 
 ### Issue 1: "Package X requires Python <3.13"
+
 **Solution:**
+
 ```bash
 # Update .python-version
 echo "3.11.0" > .python-version
@@ -151,9 +168,11 @@ envVars:
 ```
 
 ### Issue 2: "Compilation failed"
+
 **Cause:** Binary package (pandas, numpy) not available for your Python/OS combo.
 
 **Solution:**
+
 ```bash
 # Option 1: Use compatible Python version
 pyenv install 3.11.0
@@ -165,9 +184,11 @@ pip install pandas==2.2.0  # May support newer Python
 ```
 
 ### Issue 3: "Works locally, fails on Render"
+
 **Cause:** Mac ARM64 vs Linux x86_64 differences.
 
 **Solution:**
+
 ```bash
 # Test with Docker (matches Linux environment)
 docker run -it --rm -v $(pwd):/app python:3.11 bash
@@ -177,13 +198,16 @@ python app.py
 ```
 
 ### Issue 4: "Dependency conflict detected"
+
 **Example:**
+
 ```
 dash 2.14.2 requires werkzeug<3.1
 flask 3.0 requires werkzeug>=3.0
 ```
 
 **Solution:**
+
 ```bash
 # Check conflicts
 pip check
@@ -202,6 +226,7 @@ pip freeze > requirements.txt
 ## 🎯 Best Practices
 
 ### 1. **Regular Dependency Audits**
+
 ```bash
 # Every month, check for updates and security issues
 pip list --outdated
@@ -210,6 +235,7 @@ safety check
 ```
 
 ### 2. **Use Virtual Environments Always**
+
 ```bash
 # Never install globally
 python -m venv venv
@@ -217,13 +243,16 @@ source venv/bin/activate
 ```
 
 ### 3. **Document Your Python Version**
+
 In multiple places for redundancy:
+
 - `runtime.txt` → `python-3.11.0`
 - `.python-version` → `3.11.0`
 - `render.yaml` → `PYTHON_VERSION: "3.11"`
 - `README.md` → "Python 3.11+ required"
 
 ### 4. **Test on Target Platform**
+
 ```bash
 # Option 1: Docker
 docker run -it python:3.11-slim bash
@@ -239,6 +268,7 @@ jobs:
 ```
 
 ### 5. **Pin Transitive Dependencies**
+
 ```bash
 # Generate complete locked versions
 pip freeze > requirements-lock.txt
@@ -289,14 +319,14 @@ safety check
 
 ## 🚀 Quick Reference
 
-| Problem | Solution |
-|---------|----------|
-| Build fails on Render | Match Python versions with `.python-version` |
-| Works locally, fails deployed | Test with Docker using same Python version |
-| Import errors | Run `python check_compatibility.py` |
-| Dependency conflicts | Run `pip check` and resolve |
-| Outdated packages | Run `pip list --outdated` |
-| Security issues | Run `safety check` |
+| Problem                       | Solution                                     |
+| ----------------------------- | -------------------------------------------- |
+| Build fails on Render         | Match Python versions with `.python-version` |
+| Works locally, fails deployed | Test with Docker using same Python version   |
+| Import errors                 | Run `python check_compatibility.py`          |
+| Dependency conflicts          | Run `pip check` and resolve                  |
+| Outdated packages             | Run `pip list --outdated`                    |
+| Security issues               | Run `safety check`                           |
 
 ---
 
