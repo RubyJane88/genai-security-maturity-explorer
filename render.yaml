@@ -7,3 +7,5 @@ services:
     branch: main
     dockerfilePath: ./Dockerfile
     dockerContext: .
+    # Explicitly override any Procfile with Docker CMD
+    dockerCommand: gunicorn app:server --bind 0.0.0.0:$PORT --workers 2 --timeout 120

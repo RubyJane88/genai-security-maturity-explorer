@@ -23,4 +23,6 @@ COPY . .
 EXPOSE 8050
 
 # Run with gunicorn (Render provides PORT env variable)
-CMD gunicorn app:server --bind 0.0.0.0:${PORT:-8050} --workers 4 --timeout 120
+# Using 2 workers for free tier memory limits
+# Shell form to ensure PORT variable expansion works
+CMD ["sh", "-c", "gunicorn app:server --bind 0.0.0.0:${PORT:-8050} --workers 2 --timeout 120 --max-requests 1000 --max-requests-jitter 50"]
