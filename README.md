@@ -245,8 +245,8 @@ After your app is live on Render.com:
 1. **Update the Live URL** (if different from default):
    - Copy your actual Render URL
    - Update the URL in the badges and "Live Demo" section at the top of this README
-   
 2. **Add Dashboard Screenshot**:
+
    - Visit your live dashboard
    - Take a screenshot showing the heatmap and controls
    - Save as `assets/preview.png`

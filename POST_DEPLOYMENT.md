@@ -5,6 +5,7 @@ Complete these steps after your Render.com deployment is live!
 ## ✅ Step 1: Get Your Live URL
 
 After Render.com finishes deploying, you'll see a URL like:
+
 ```
 https://genai-security-maturity-explorer.onrender.com
 ```
@@ -14,6 +15,7 @@ https://genai-security-maturity-explorer.onrender.com
 ## ✅ Step 2: Take a Dashboard Screenshot
 
 ### Option A: From Local (Recommended)
+
 1. Make sure your local app is running: `python app.py`
 2. Open http://localhost:8050 in your browser
 3. **Set it up nicely**:
@@ -27,11 +29,13 @@ https://genai-security-maturity-explorer.onrender.com
    - **Full page**: Use browser extension like "Awesome Screenshot"
 
 ### Option B: From Live Site
+
 1. Visit your Render URL (wait 30s if it's sleeping)
 2. Follow same setup steps as Option A
 3. Take screenshot
 
 ### Save the Screenshot
+
 ```bash
 # Save your screenshot as preview.png in the assets folder
 # Then run:
@@ -53,6 +57,7 @@ The URLs are already set to the expected default. If Render gives you a differen
 ## ✅ Step 4: Test Everything
 
 Visit your live dashboard and verify:
+
 - [ ] Heatmap loads correctly
 - [ ] Hover tooltips show detailed evidence
 - [ ] Click on threat categories opens modal
@@ -65,6 +70,7 @@ Visit your live dashboard and verify:
 ## 🎉 Done!
 
 Once completed:
+
 1. Your dashboard is live and accessible worldwide
 2. README shows a beautiful preview image
 3. Anyone can click the Live Demo badge to try it
