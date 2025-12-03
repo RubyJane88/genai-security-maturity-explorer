@@ -4,6 +4,7 @@
 [![Dash](https://img.shields.io/badge/Dash-2.14-green.svg)](https://dash.plotly.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen.svg)](https://genai-security-maturity-explorer.onrender.com)
+[![Compatibility Checks](https://github.com/RubyJane88/genai-security-maturity-explorer/actions/workflows/compatibility-check.yml/badge.svg)](https://github.com/RubyJane88/genai-security-maturity-explorer/actions/workflows/compatibility-check.yml)
 
 An interactive dashboard for visualizing the **Three-Dimensional Maturity Assessment** of Generative AI security risks, based on the master's thesis _"Security Risks in Generative AI"_ by Ruby Jane Cabagnot (2025).
 
