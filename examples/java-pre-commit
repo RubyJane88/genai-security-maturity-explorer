@@ -1,0 +1,76 @@
+#!/bin/bash
+# Pre-commit hook for Java/Maven projects
+# Save as: .git/hooks/pre-commit
+
+set -e
+
+echo "🔍 Running pre-commit checks for Java/Maven project..."
+echo ""
+
+# Check Java version
+echo "1️⃣  Checking Java version..."
+JAVA_VERSION=$(java -version 2>&1 | head -n 1 | awk -F '"' '{print $2}')
+echo "   Current: Java $JAVA_VERSION"
+
+REQUIRED_MAJOR="11"
+CURRENT_MAJOR=$(echo $JAVA_VERSION | cut -d. -f1)
+
+if [ "$CURRENT_MAJOR" -ge "$REQUIRED_MAJOR" ]; then
+    echo "   ✅ Java $CURRENT_MAJOR >= $REQUIRED_MAJOR"
+else
+    echo "   ❌ Java $CURRENT_MAJOR < $REQUIRED_MAJOR (required)"
+    exit 1
+fi
+echo ""
+
+# Check for pom.xml
+echo "2️⃣  Checking pom.xml..."
+if [ -f "pom.xml" ]; then
+    echo "   ✅ pom.xml found"
+else
+    echo "   ❌ pom.xml not found"
+    exit 1
+fi
+echo ""
+
+# Compile project
+echo "3️⃣  Compiling project..."
+mvn compile -q > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+    echo "   ✅ Compilation successful"
+else
+    echo "   ❌ Compilation failed"
+    mvn compile
+    exit 1
+fi
+echo ""
+
+# Run tests
+echo "4️⃣  Running tests..."
+mvn test -q > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+    echo "   ✅ All tests passed"
+else
+    echo "   ❌ Tests failed"
+    mvn test
+    exit 1
+fi
+echo ""
+
+# Check code style (if Checkstyle plugin exists)
+echo "5️⃣  Checking code style..."
+if grep -q "maven-checkstyle-plugin" pom.xml; then
+    mvn checkstyle:check -q > /dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        echo "   ✅ No style violations"
+    else
+        echo "   ⚠️  Style violations found"
+        mvn checkstyle:check
+    fi
+else
+    echo "   ⚠️  Checkstyle plugin not configured (skipped)"
+fi
+echo ""
+
+echo "✅ All pre-commit checks passed!"
+exit 0
