@@ -1,0 +1,19 @@
+# GenAI Security Maturity Explorer - Dependencies
+# Python 3.9+ required
+
+# Core Dash framework
+dash==2.14.2
+dash-bootstrap-components==1.5.0
+
+# Plotly for visualizations
+plotly==5.18.0
+
+# Data handling
+pandas==2.1.4
+numpy==1.26.2
+
+# Production server
+gunicorn==21.2.0
+
+# Optional: for development
+python-dotenv==1.0.0
