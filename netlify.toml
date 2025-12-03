@@ -1,0 +1,27 @@
+# Netlify Configuration for GenAI Security Maturity Explorer
+# NOTE: Netlify is optimized for static sites. For Dash apps, Render.com is recommended.
+# This configuration is provided for reference, but may require additional setup.
+
+[build]
+  command = "pip install -r requirements.txt"
+  publish = "public"
+
+# Redirect all requests to a serverless function (requires refactoring)
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/app/:splat"
+  status = 200
+
+# Build environment
+[build.environment]
+  PYTHON_VERSION = "3.12"
+
+# Note: To deploy on Netlify, you'll need to:
+# 1. Convert the Dash app to use Netlify Functions
+# 2. Create a functions directory with serverless handlers
+# 3. Consider using a static export instead
+#
+# For production deployment of this Dash app, use:
+# - Render.com (recommended) - Native Python/Dash support
+# - Heroku - Native Python/Dash support
+# - Docker - Full control and portability

@@ -23,6 +23,73 @@ This dashboard presents a sociotechnical maturity assessment framework that eval
 
 > _"Threats consistently reach Level 4 (mature) while protections lag at Levels 0-2, with stakeholder protection representing the most severe deficit."_
 
+## 📌 Executive Summary: Why This Matters
+
+Generative AI systems are being rapidly deployed across critical sectors—from healthcare to finance, education to public services—yet **security protections are dangerously lagging behind emerging threats**. This dashboard reveals a stark reality:
+
+### The Crisis
+
+- **Threat Sophistication**: Attacks like prompt injection and privacy breaches have reached industrial maturity (Level 4)
+- **Protection Gap**: Average 3.5-point gap between threat capabilities and defensive measures
+- **Stakeholder Vulnerability**: End users have virtually no legal protections (averaging Level 0.5)
+- **Governance Void**: Regulatory frameworks remain undefined or unenforced (Levels 0-1)
+
+### The Impact
+
+Without coordinated action, we face:
+
+- **Mass Privacy Violations**: Training data extraction exposing sensitive personal information
+- **Automated Manipulation**: Scaled disinformation campaigns undermining democratic processes
+- **Liability Black Holes**: No clear accountability when AI systems cause harm
+- **Trust Erosion**: Public confidence in AI systems collapsing due to repeated security failures
+
+### The Solution
+
+This tool enables **evidence-based decision-making** by:
+
+1. **Quantifying the gap** between threats and protections with academic rigor
+2. **Modeling future scenarios** to prioritize investments and policy interventions
+3. **Tracking progress** as technical, regulatory, and legal frameworks evolve
+4. **Facilitating dialogue** between technologists, policymakers, and civil society
+
+## 👥 Who Should Use This Tool
+
+### 🏢 **Policymakers & Regulators**
+
+- **Use Case**: Prioritize which AI security domains need urgent regulatory attention
+- **Benefit**: Understand where enforcement gaps create the most risk to citizens
+- **Example**: EU AI Act implementation teams assessing compliance readiness
+
+### 🔒 **Security Teams & Risk Managers**
+
+- **Use Case**: Conduct AI risk assessments and justify security budget allocations
+- **Benefit**: Compare your organization's defenses against industry maturity benchmarks
+- **Example**: CISOs presenting board-level risk reports on GenAI deployments
+
+### 🎓 **Researchers & Academics**
+
+- **Use Case**: Identify research gaps and emerging threat vectors
+- **Benefit**: Access synthesized data from 46+ authoritative sources in one dashboard
+- **Example**: PhD students studying AI governance or doctoral committees reviewing thesis work
+
+### 💼 **Technology Leaders & Product Managers**
+
+- **Use Case**: Make informed decisions about AI system design and deployment
+- **Benefit**: Understand full lifecycle security requirements beyond technical controls
+- **Example**: AI startup founders designing responsible AI architectures
+
+### 🏛️ **Civil Society & Advocacy Groups**
+
+- **Use Case**: Hold organizations accountable for AI safety claims
+- **Benefit**: Access evidence-based data to support policy advocacy efforts
+- **Example**: Digital rights organizations campaigning for stronger AI protections
+
+### 📰 **Journalists & Public Educators**
+
+- **Use Case**: Explain complex AI security issues to general audiences
+- **Benefit**: Visual storytelling tool with credible academic foundations
+- **Example**: Tech journalists covering AI safety and regulation stories
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -116,6 +183,32 @@ genai-security-maturity-explorer/
 5. Render will auto-detect settings from `render.yaml`
 6. Click **Create Web Service**
 
+### Netlify (Alternative - Free Tier)
+
+**Note**: Netlify is designed for static sites, but can host Python apps using serverless functions. For Dash apps, Render or Heroku are better suited, but here's how to deploy on Netlify:
+
+**Option 1: Using Netlify Functions (Requires Refactoring)**
+
+1. Refactor Dash app to use serverless functions
+2. Create `netlify.toml`:
+
+   ```toml
+   [build]
+     command = "pip install -r requirements.txt"
+     publish = "public"
+
+   [[redirects]]
+     from = "/*"
+     to = "/.netlify/functions/app/:splat"
+     status = 200
+   ```
+
+**Option 2: Use Render Instead** ⭐ **Recommended**
+
+- Netlify doesn't natively support long-running Python web servers
+- Render.com offers better support for Dash/Flask applications
+- Both have free tiers with similar features
+
 ### Heroku
 
 ```bash
@@ -130,6 +223,15 @@ heroku open
 docker build -t genai-maturity .
 docker run -p 8050:8050 genai-maturity
 ```
+
+### Deployment Comparison
+
+| Platform       | Free Tier    | Best For          | Python/Dash Support       |
+| -------------- | ------------ | ----------------- | ------------------------- |
+| **Render.com** | ✅ 750hrs/mo | Web apps & APIs   | ⭐⭐⭐⭐⭐ Native         |
+| **Heroku**     | ⚠️ Limited   | Rapid prototyping | ⭐⭐⭐⭐ Native           |
+| **Netlify**    | ✅ Unlimited | Static sites      | ⭐⭐ Requires workarounds |
+| **Docker**     | N/A          | Self-hosting      | ⭐⭐⭐⭐⭐ Full control   |
 
 ## 📚 Data Sources
 
