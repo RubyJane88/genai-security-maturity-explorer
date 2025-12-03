@@ -3,8 +3,13 @@
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
 [![Dash](https://img.shields.io/badge/Dash-2.14-green.svg)](https://dash.plotly.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen.svg)](https://genai-security-maturity-explorer.onrender.com)
 
 An interactive dashboard for visualizing the **Three-Dimensional Maturity Assessment** of Generative AI security risks, based on the master's thesis _"Security Risks in Generative AI"_ by Ruby Jane Cabagnot (2025).
+
+**🌐 Live Demo**: [https://genai-security-maturity-explorer.onrender.com](https://genai-security-maturity-explorer.onrender.com)
+
+> ⚠️ **Note**: Free tier apps sleep after 15 minutes of inactivity. First load may take 30-60 seconds to wake up.
 
 ![Dashboard Preview](assets/preview.png)
 
@@ -232,6 +237,30 @@ docker run -p 8050:8050 genai-maturity
 | **Heroku**     | ⚠️ Limited   | Rapid prototyping | ⭐⭐⭐⭐ Native           |
 | **Netlify**    | ✅ Unlimited | Static sites      | ⭐⭐ Requires workarounds |
 | **Docker**     | N/A          | Self-hosting      | ⭐⭐⭐⭐⭐ Full control   |
+
+### 📸 Post-Deployment Steps
+
+After your app is live on Render.com:
+
+1. **Update the Live URL** (if different from default):
+   - Copy your actual Render URL
+   - Update the URL in the badges and "Live Demo" section at the top of this README
+   
+2. **Add Dashboard Screenshot**:
+   - Visit your live dashboard
+   - Take a screenshot showing the heatmap and controls
+   - Save as `assets/preview.png`
+   - Commit and push:
+     ```bash
+     git add assets/preview.png
+     git commit -m "docs: Add dashboard preview screenshot"
+     git push origin main
+     ```
+
+3. **Test the deployment**:
+   - Verify all interactive features work
+   - Check hover tooltips and click modals
+   - Test year selector and dark mode toggle
 
 ## 📚 Data Sources
 
