@@ -1,12 +1,9 @@
 services:
   - type: web
     name: genai-security-maturity-explorer
-    runtime: python
+    runtime: docker
     plan: free
     region: oregon
     branch: main
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:server --bind 0.0.0.0:$PORT
-    envVars:
-      - key: PYTHON_VERSION
-        value: 3.11
+    dockerfilePath: ./Dockerfile
+    dockerContext: .

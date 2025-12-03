@@ -1,0 +1,65 @@
+# Python
+
+**pycache**/
+_.py[cod]
+_$py.class
+_.so
+.Python
+venv/
+env/
+ENV/
+_.egg-info/
+dist/
+build/
+
+# Git
+
+.git/
+.gitignore
+.github/
+
+# Documentation
+
+\*.md
+!README.md
+docs/
+
+# IDE
+
+.vscode/
+.idea/
+_.swp
+_.swo
+
+# OS
+
+.DS_Store
+Thumbs.db
+
+# Local development
+
+.env
+\*.local
+
+# Testing
+
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Deployment (not needed in container)
+
+runtime.txt
+Procfile
+.python-version
+netlify.toml
+
+# Examples and guides
+
+examples/
+AUTOMATION_GUIDE.md
+COMPATIBILITY_GUIDE.md
+REUSABILITY_GUIDE.md
+AUTOMATION_SUMMARY.md
+POST_DEPLOYMENT.md
+DOCKER_DEPLOYMENT.md

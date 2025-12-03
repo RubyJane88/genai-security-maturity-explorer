@@ -19,8 +19,8 @@ RUN pip install --no-cache-dir --upgrade pip && \
 # Copy application code
 COPY . .
 
-# Expose port
+# Expose port (Render assigns dynamically)
 EXPOSE 8050
 
-# Run with gunicorn
-CMD ["gunicorn", "app:server", "--bind", "0.0.0.0:8050", "--workers", "4", "--timeout", "120"]
+# Run with gunicorn (Render provides PORT env variable)
+CMD gunicorn app:server --bind 0.0.0.0:${PORT:-8050} --workers 4 --timeout 120
