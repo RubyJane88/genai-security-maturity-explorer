@@ -11,20 +11,26 @@
 ## ✅ What Was Fixed
 
 ### The Problem
+
 Deployment kept failing with:
+
 ```
 gunicorn.errors.AppImportError: Failed to parse 'app:server' as an attribute name or function call.
 ```
 
 ### The Root Cause
+
 Manual override in Render dashboard was set to:
+
 ```
 gunicorn app:app:server --bind 0.0.0.0:$PORT
                 ^^^ WRONG (should be app:server)
 ```
 
 ### The Solution
+
 Changed Render dashboard "Start Command" to:
+
 ```
 gunicorn app:server --bind 0.0.0.0:$PORT --workers 2 --timeout 120
 ```
@@ -40,7 +46,7 @@ gunicorn app:server --bind 0.0.0.0:$PORT --workers 2 --timeout 120
 ```
 1. 🔴 Dashboard/UI Settings ← THIS WAS THE ISSUE
 2. 🟠 Platform Config Files (render.yaml)
-3. 🟡 Runtime Files (Dockerfile, Procfile)  
+3. 🟡 Runtime Files (Dockerfile, Procfile)
 4. 🟢 Application Code
 ```
 
@@ -51,6 +57,7 @@ gunicorn app:server --bind 0.0.0.0:$PORT --workers 2 --timeout 120
 ## 📚 Documentation Created
 
 ### For Immediate Reference
+
 - ✅ **[DEPLOYMENT_DEBUGGING_STORY.md](./DEPLOYMENT_DEBUGGING_STORY.md)**
   - Complete debugging journey
   - Configuration precedence explained
@@ -59,6 +66,7 @@ gunicorn app:server --bind 0.0.0.0:$PORT --workers 2 --timeout 120
   - Ready for blog post adaptation
 
 ### For Quick Navigation
+
 - ✅ **[docs/README.md](./README.md)**
   - Index of all documentation
   - Quick links by use case
@@ -72,14 +80,14 @@ gunicorn app:server --bind 0.0.0.0:$PORT --workers 2 --timeout 120
 
 **YES!** This is the industry standard across major platforms:
 
-| Platform | Dashboard Overrides |
-|----------|---------------------|
-| Render | ✅ Start Command, Build Command |
-| Vercel | ✅ Environment Variables, Build Settings |
-| Heroku | ✅ Config Vars, Dyno Settings |
-| Netlify | ✅ Deploy Settings |
-| Railway | ✅ Start Command |
-| AWS/GCP/Azure | ✅ Console/Portal Settings |
+| Platform      | Dashboard Overrides                      |
+| ------------- | ---------------------------------------- |
+| Render        | ✅ Start Command, Build Command          |
+| Vercel        | ✅ Environment Variables, Build Settings |
+| Heroku        | ✅ Config Vars, Dyno Settings            |
+| Netlify       | ✅ Deploy Settings                       |
+| Railway       | ✅ Start Command                         |
+| AWS/GCP/Azure | ✅ Console/Portal Settings               |
 
 **Why?** Operations teams need emergency override capability without waiting for code changes.
 
@@ -88,6 +96,7 @@ gunicorn app:server --bind 0.0.0.0:$PORT --workers 2 --timeout 120
 ### Q: "Why didn't we see it in the error logs?"
 
 **We DID see it!** It was in line 1:
+
 ```bash
 ==> Running 'gunicorn app:app:server --bind 0.0.0.0:$PORT'
             ^^^^^^^^^^^^ THE PROBLEM WAS HERE
@@ -102,18 +111,21 @@ But we focused on the 50-line Python traceback below instead of questioning the 
 ## 🚀 Current Deployment Status
 
 ### Configuration
+
 - **Runtime:** Docker
 - **Python Version:** 3.11 (guaranteed by Dockerfile)
 - **Workers:** 2 (optimized for free tier)
 - **Start Command:** `gunicorn app:server --bind 0.0.0.0:$PORT --workers 2 --timeout 120`
 
 ### Health Check
+
 - ✅ App is live
 - ✅ Dashboard loads successfully
 - ✅ Interactive features working
 - ✅ No console errors
 
 ### Performance
+
 - **First Load:** ~30-60 seconds (free tier sleeps after inactivity)
 - **Subsequent:** Instant
 - **Build Time:** 5-8 minutes (Docker)
@@ -123,18 +135,21 @@ But we focused on the 50-line Python traceback below instead of questioning the 
 ## 📖 Blog Post Ideas
 
 ### Titles
+
 1. "The Dashboard Override That Cost Me 3 Hours: A Deployment Debugging Story"
 2. "Why Your Deployment Keeps Failing (Even Though Your Code is Perfect)"
 3. "Configuration Precedence: The Hidden Layer of Cloud Deployments"
 4. "Read Line 1 First: A Lesson in Error Message Analysis"
 
 ### Key Angles
+
 - **Universal Experience:** Every developer hits this eventually
 - **Hidden State Problem:** Not all config is in git
 - **Cognitive Bias:** We see what we expect (the traceback, not the command)
 - **Platform Design:** Why overrides exist and why they're problematic
 
 ### Target Audiences
+
 - **Beginners:** "Cloud platforms have hidden settings"
 - **Experienced Devs:** "Even veterans miss the obvious"
 - **DevOps:** "GitOps vs. operational flexibility"
@@ -158,18 +173,21 @@ Even though we took the "long way," we gained:
 ## 📋 Next Steps
 
 ### Immediate
+
 - [ ] Take screenshot of live dashboard
 - [ ] Save as `assets/preview.png`
 - [ ] Test all interactive features
 - [ ] Share with community
 
 ### Optional
+
 - [ ] Write blog post using DEPLOYMENT_DEBUGGING_STORY.md
 - [ ] Share on Dev.to, Medium, personal blog
 - [ ] Tweet thread with key insights
 - [ ] Create YouTube walkthrough
 
 ### For Other Projects
+
 - [ ] Use automation templates from `examples/`
 - [ ] Reference REUSABILITY_GUIDE.md
 - [ ] Check dashboard settings FIRST when debugging
@@ -179,12 +197,14 @@ Even though we took the "long way," we gained:
 ## 🙏 Acknowledgments
 
 **What worked:**
+
 - Systematic documentation
 - Pre-commit automation (caught issues before push)
 - Docker for environment consistency
 - Community debugging patterns
 
 **What to improve:**
+
 - Check dashboard settings earlier in debugging
 - Create checklist for "external state" (non-git config)
 - Document platform-specific settings immediately
@@ -210,6 +230,6 @@ If you encounter similar issues:
 
 ---
 
-*"The answer was in line 1 of the error, but we spent hours on line 50."*
+_"The answer was in line 1 of the error, but we spent hours on line 50."_
 
 **— Every Developer, Eventually**

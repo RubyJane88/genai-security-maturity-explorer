@@ -911,7 +911,7 @@ def create_main_content():
                     ], md=3, className="border-end"),
                     dbc.Col([
                         html.Div([
-                            html.H4("46", className="text-info mb-1 display-6 fw-bold"),
+                            html.H4("34", className="text-info mb-1 display-6 fw-bold"),
                             html.P("Sources Reviewed", className="fw-bold mb-1"),
                             html.Small(
                                 "Academic, regulatory, incident data",
@@ -939,7 +939,7 @@ def create_footer():
                         className="text-decoration-none",
                         target="_blank"
                     ),
-                    " | Based on systematic review of 46 sources"
+                    " | Based on systematic review of 34 sources"
                 ], className="text-center text-muted small mb-2"),
                 html.P([
                     html.Strong("Maturity Scale: "),
