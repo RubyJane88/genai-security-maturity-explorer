@@ -283,7 +283,7 @@ The maturity assessment synthesizes 46 academic and regulatory sources, includin
 
 ## 🔬 Methodology
 
-The Three-Dimensional Maturity Assessment uses a 0-4 scale:
+The Three-Dimensional Maturity Assessment uses a 0-4 scale based on a synthesis of 46 authoritative sources:
 
 | Level | Name           | Description                                      |
 | ----- | -------------- | ------------------------------------------------ |

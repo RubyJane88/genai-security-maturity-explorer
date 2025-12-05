@@ -378,13 +378,23 @@ def create_heatmap(year="2025", governance_adjustment=0, dark_mode=True):
         hover_texts.append(row_hover)
     
     # Color scale: red (0) → orange → yellow → light green → dark green (4)
-    # Matching the thesis Figure 3 exactly
+    # Matching the thesis Figure 3 exactly with discrete steps
+    # 0.0 - 0.9: Red (0.0 - 0.24)
+    # 1.0 - 1.9: Orange (0.25 - 0.49)
+    # 2.0 - 2.4: Yellow (0.50 - 0.624)
+    # 2.5 - 3.4: Light Green (0.625 - 0.874)
+    # 3.5 - 4.0: Dark Green (0.875 - 1.0)
     colorscale = [
-        [0, '#d73027'],      # Red (0)
-        [0.25, '#fc8d59'],   # Orange (1)
-        [0.5, '#fee08b'],    # Yellow (2)
-        [0.75, '#d9ef8b'],   # Light green (3)
-        [1, '#1a9850']       # Dark green (4)
+        [0.0, '#d73027'],
+        [0.249, '#d73027'],
+        [0.25, '#fc8d59'],
+        [0.499, '#fc8d59'],
+        [0.50, '#fee08b'],
+        [0.624, '#fee08b'],
+        [0.625, '#d9ef8b'],
+        [0.874, '#d9ef8b'],
+        [0.875, '#1a9850'],
+        [1.0, '#1a9850']
     ]
     
     # Create heatmap figure
@@ -1015,8 +1025,8 @@ def update_charts(year, governance_adj, dark_mode):
     def get_color(val):
         if val >= 3.5: return "#1a9850" # Dark Green
         if val >= 2.5: return "#d9ef8b" # Light Green
-        if val >= 1.5: return "#fee08b" # Yellow
-        if val >= 0.5: return "#fc8d59" # Orange
+        if val >= 2.0: return "#fee08b" # Yellow
+        if val >= 1.0: return "#fc8d59" # Orange
         return "#d73027" # Red
 
     # Build stats display
