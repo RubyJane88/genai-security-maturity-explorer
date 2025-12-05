@@ -1011,23 +1011,31 @@ def update_charts(year, governance_adj, dark_mode):
     avg_stake = np.mean([data[cat][3] for cat in THREAT_CATEGORIES])
     overall_gap = avg_threat - avg_stake
     
+    # Helper to get color based on score
+    def get_color(val):
+        if val >= 3.5: return "#1a9850" # Dark Green
+        if val >= 2.5: return "#d9ef8b" # Light Green
+        if val >= 1.5: return "#fee08b" # Yellow
+        if val >= 0.5: return "#fc8d59" # Orange
+        return "#d73027" # Red
+
     # Build stats display
     stats = html.Div([
         html.Div([
             html.Span("Threat Maturity: ", className="text-muted"),
-            html.Span(f"{avg_threat:.1f}", className="fw-bold text-danger")
+            html.Span(f"{avg_threat:.1f}", className="fw-bold", style={"color": get_color(avg_threat)})
         ], className="mb-1"),
         html.Div([
             html.Span("Technical Controls: ", className="text-muted"),
-            html.Span(f"{avg_tech:.1f}", className="fw-bold text-warning")
+            html.Span(f"{avg_tech:.1f}", className="fw-bold", style={"color": get_color(avg_tech)})
         ], className="mb-1"),
         html.Div([
             html.Span("Governance: ", className="text-muted"),
-            html.Span(f"{avg_gov:.1f}", className="fw-bold text-info")
+            html.Span(f"{avg_gov:.1f}", className="fw-bold", style={"color": get_color(avg_gov)})
         ], className="mb-1"),
         html.Div([
             html.Span("Stakeholder Protection: ", className="text-muted"),
-            html.Span(f"{avg_stake:.1f}", className="fw-bold text-success")
+            html.Span(f"{avg_stake:.1f}", className="fw-bold", style={"color": get_color(avg_stake)})
         ], className="mb-2"),
         html.Hr(className="my-2"),
         html.Div([
